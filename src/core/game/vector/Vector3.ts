@@ -50,7 +50,7 @@ export class Vec3 {
 			x: this.x,
 			y: this.y,
 			z: this.z,
-		}
+		};
 	}
 
 	public clone(): Vec3 {

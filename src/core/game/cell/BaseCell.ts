@@ -1,6 +1,6 @@
 import { Game } from '../game/Game.js';
-import { Scene } from '../scene/Scene.js';
-import { SceneElement } from '../scene/SceneElement.js';
+import { Scene } from '../game/scene/Scene.js';
+import { GameElement } from '../game/scene/scene_element/GameElement.js';
 import { CellMaterial } from '../typings/cell.js';
 
 export interface BaseCellData {
@@ -27,7 +27,7 @@ export abstract class BaseCell {
 		return this.height;
 	}
 
-	public abstract onEnter(element: SceneElement): void;
+	public abstract onEnter(element: GameElement): void;
 
-	public abstract onLeave(element: SceneElement): void;
+	public abstract onLeave(element: GameElement): void;
 }

@@ -4,7 +4,7 @@ import { AnyCellData, CellFactory } from '../cell/cells/index.js';
 import { Game } from '../game/Game.js';
 import { Renderable } from '../renderer/Renderable.js';
 import { Renderer } from '../renderer/Renderer.js';
-import { Scene } from '../scene/Scene.js';
+import { Scene } from '../game/scene/Scene.js';
 import { Vec2 } from '../vector/Vector2.js';
 
 export class Grid implements Renderable {

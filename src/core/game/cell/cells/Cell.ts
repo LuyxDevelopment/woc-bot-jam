@@ -1,5 +1,5 @@
 import { Game } from '../../game/Game.js';
-import { Scene } from '../../scene/Scene.js';
+import { Scene } from '../../game/scene/Scene.js';
 import { CellMaterial } from '../../typings/cell.js';
 import { BaseCell, BaseCellData } from '../BaseCell.js';
 
