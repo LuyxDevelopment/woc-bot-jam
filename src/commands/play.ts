@@ -16,23 +16,23 @@ export default new DaikSlashCommand<CommandRunArgs, CommandResult, CommandProps>
 		.toJSON(),
 	run(interaction, client): CommandResult {
 		const player = game.addElement(Player, interaction.user.id, '👾');
-		const response = responder.create('PLAY', 'Loading...', '');
+		const response = responder.create('PLAY', 'Loading...', '', false);
 		interaction.editReply(response);
 
 		const inter = setInterval(async () => {
 			const scene = player.getScene();
-			
+
 			try {
-				await interaction.editReply(responder.create('PLAY', scene.name, renders[0][scene.name]!));
+				await interaction.editReply(responder.create('PLAY', scene.name, renders[0][scene.name]!, false));
 			} catch (e) {
 				console.log('terminated');
 				clearInterval(inter);
 				player.close();
 			}
-		}, 2500);		
+		}, 2500);
 
 		return {
 			success: true,
 		};
-	},	
+	},
 });

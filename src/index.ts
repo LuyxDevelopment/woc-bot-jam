@@ -8,7 +8,7 @@ import { Vec2 } from '#game';
 await client.loadCommandDirectory('./build/commands');
 
 // Login the client
-client.login();
+client.login(process.env.DISCORD_BOT_TOKEN);
 console.log(chalk.bgCyan.bold('Client started'));
 
 // Start listening for events
@@ -21,7 +21,7 @@ client.on('interactionCreate', (interaction) => {
 
 	if (player && player.isPlayer()) {
 		switch (interaction.customId) {
-			case 'up': 
+			case 'up':
 				player.checkedMove(new Vec2(0, -1));
 				break;
 			case 'down':

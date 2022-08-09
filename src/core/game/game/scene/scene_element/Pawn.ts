@@ -9,6 +9,7 @@ export abstract class Pawn extends GameElement {
 			const pos = this.pos.add(delta);
 			const oldCell = grid.get(this.pos);
 			const newCell = grid.get(pos);
+			if (!newCell) break;
 			const heightDif = Math.abs(oldCell.getHeight() - newCell.getHeight());
 			let shouldStop = false;
 

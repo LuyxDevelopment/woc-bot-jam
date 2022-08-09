@@ -1,3 +1,4 @@
+import { AnyItem } from '../../../game/item/Item.js';
 import mongoose from 'mongoose';
 
 export interface IUser {
@@ -5,7 +6,7 @@ export interface IUser {
 	xp: number;
 	coins: number;
 	skin: string;
-	inventory: [];
+	inventory: AnyItem[];
 }
 
 export const userSchema = new mongoose.Schema<IUser>({

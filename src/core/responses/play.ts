@@ -2,7 +2,7 @@ import { ResponseOptions } from 'daik/responses';
 import { MessageButton, MessageActionRow } from 'discord.js';
 
 export default {
-	PLAY: (area: string, grid: string): ResponseOptions => ({
+	PLAY: (area: string, grid: string, disableMovement: boolean): ResponseOptions => ({
 		embeds: [{
 			title: area,
 			description: grid,
@@ -12,16 +12,17 @@ export default {
 				.addComponents([
 					new MessageButton()
 						.setCustomId('_1')
-						.setLabel('⬛')
+						.setLabel('\u200b')
 						.setStyle('SECONDARY')
 						.setDisabled(true),
 					new MessageButton()
 						.setCustomId('up')
 						.setLabel('⬆️')
-						.setStyle('SUCCESS'),
+						.setStyle('SUCCESS')
+						.setDisabled(disableMovement),
 					new MessageButton()
 						.setCustomId('_2')
-						.setLabel('⬛')
+						.setLabel('\u200b')
 						.setStyle('SECONDARY')
 						.setDisabled(true),
 				]),
@@ -30,15 +31,18 @@ export default {
 					new MessageButton()
 						.setCustomId('left')
 						.setLabel('⬅️')
-						.setStyle('SUCCESS'),
+						.setStyle('SUCCESS')
+						.setDisabled(disableMovement),
 					new MessageButton()
 						.setCustomId('down')
 						.setLabel('⬇️')
-						.setStyle('SUCCESS'),
+						.setStyle('SUCCESS')
+						.setDisabled(disableMovement),
 					new MessageButton()
 						.setCustomId('right')
 						.setLabel('➡️')
-						.setStyle('SUCCESS'),
+						.setStyle('SUCCESS')
+						.setDisabled(disableMovement),
 				]),
 		],
 	}),
