@@ -1,3 +1,3 @@
-# {project-name}
-{project-description}
+# woc-bot-jam
+World of Coding bot jam bot
 

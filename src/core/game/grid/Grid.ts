@@ -1,11 +1,11 @@
 import { BaseCell } from '../cell/BaseCell.js';
-import { CellData } from '../cell/cells/Cell.js';
-import { AnyCellData, CellFactory } from '../cell/cells/index.js';
 import { Game } from '../game/Game.js';
 import { Renderable } from '../renderer/Renderable.js';
 import { Renderer } from '../renderer/Renderer.js';
 import { Scene } from '../game/scene/Scene.js';
-import { Vec2 } from '../vector/Vector2.js';
+import { Vec2 } from '../vector/Vec2.js';
+import { AnyCellData } from '../typings/cell.js';
+import { CellFactory } from '../cell/CellFactory.js';
 
 export class Grid implements Renderable {
 	private readonly width: number;
@@ -22,23 +22,35 @@ export class Grid implements Renderable {
 		this.scene = scene;
 	}
 
-	public init(def: (loc: Vec2) => BaseCell) {
+	public getHeight(): number {
+		return this.height;
+	}
+
+	public getWidth(): number {
+		return this.width;
+	}
+
+	public inBounds(loc: Vec2): boolean {
+		return loc.x >= 0 && loc.x < this.width && loc.y >= 0 && loc.y < this.height;
+	}
+
+	public init(def: AnyCellData): void {
+		const factory = new CellFactory(this.game, this.scene);
 		const loc = Vec2.zero();
 
 		for (loc.y = 0; loc.y < this.height; loc.y++) {
 			for (loc.x = 0; loc.x < this.width; loc.x++) {
-				this.set(loc, def(loc));
+				this.set(loc, factory.create(def));
 			}
 		}
 	}
 
-	public load(cells: AnyCellData[]) {
+	public load(cells: AnyCellData[]): void {
 		if (cells.length !== this.grid.length) {
 			throw new Error('Grid size mismatch');
 		}
 
 		const factory = new CellFactory(this.game, this.scene);
-
 		const loc = Vec2.zero();
 
 		for (loc.y = 0; loc.y < this.height; loc.y++) {
@@ -54,11 +66,11 @@ export class Grid implements Renderable {
 		return this.grid[loc.y * this.width + loc.x]!;
 	}
 
-	public set(loc: Vec2, cell: BaseCell) {
+	public set(loc: Vec2, cell: BaseCell): void {
 		this.grid[loc.y * this.width + loc.x] = cell;
 	}
 
-	public render(renderer: Renderer) {
+	public render(renderer: Renderer): void {
 		const loc = Vec2.zero();
 
 		for (loc.y = 0; loc.y < this.height; loc.y++) {
@@ -68,5 +80,21 @@ export class Grid implements Renderable {
 				renderer.setPixel(loc, cell.getMaterial());
 			}
 		}
+	}
+
+	public get data(): AnyCellData[] {
+		const cells: AnyCellData[] = [];
+
+		const loc = Vec2.zero();
+
+		for (loc.y = 0; loc.y < this.height; loc.y++) {
+			for (loc.x = 0; loc.x < this.width; loc.x++) {
+				const cell = this.get(loc);
+
+				cells.push(cell.data);
+			}
+		}
+
+		return cells;
 	}
 }

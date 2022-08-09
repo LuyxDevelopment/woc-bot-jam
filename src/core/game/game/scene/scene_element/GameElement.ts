@@ -1,12 +1,13 @@
 import { Game } from '../../Game.js';
 import { Renderable } from '../../../renderer/Renderable.js';
 import { Renderer } from '../../../renderer/Renderer.js';
-import { Vec2 } from '../../../vector/Vector2.js';
-import { Vec3 } from '../../../vector/Vector3.js';
+import { Vec2 } from '../../../vector/Vec2.js';
+import { Vec3 } from '../../../vector/Vec3.js';
 import { Scene } from '../Scene.js';
 import { Pawn } from './Pawn.js';
 import { NPC } from './NPC.js';
 import { Player } from './Player.js';
+import { Anchor } from './Anchor.js';
 
 export abstract class GameElement implements Renderable {
 	public readonly id: string;
@@ -45,6 +46,8 @@ export abstract class GameElement implements Renderable {
 		this.scene = scene;
 
 		this.scene.addElement(this);
+
+		this.setPos(this.scene.getStartPos().toVec2());
 	}
 
 	public getPos(): Vec3 {
@@ -56,9 +59,11 @@ export abstract class GameElement implements Renderable {
 	}
 
 	public close(): void {
+		this.game.removeElement(this);
 		this.scene.removeElement(this);
 	}
 
+	public isAnchor(): this is Anchor { return false; }
 	public isPawn(): this is Pawn { return false; }
 	public isNPC(): this is NPC { return false; }
 	public isPlayer(): this is Player { return false; }

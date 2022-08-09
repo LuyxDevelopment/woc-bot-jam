@@ -1,20 +1,22 @@
 import { Game } from '../game/Game.js';
 import { Scene } from '../game/scene/Scene.js';
 import { GameElement } from '../game/scene/scene_element/GameElement.js';
-import { CellMaterial } from '../typings/cell.js';
+import { AnyCellData, CellMaterial } from '../typings/cell.js';
 
 export interface BaseCellData {
 	height: number;
+	material: CellMaterial;
 }
 
 export abstract class BaseCell {
 	private height: number;
-	protected abstract material: CellMaterial;
+	private material: CellMaterial;
 	protected readonly game: Game;
 	protected readonly scene: Scene;
 
 	constructor(data: BaseCellData, game: Game, scene: Scene) {
 		this.height = data.height;
+		this.material = data.material;
 		this.game = game;
 		this.scene = scene;
 	}
@@ -27,7 +29,9 @@ export abstract class BaseCell {
 		return this.height;
 	}
 
-	public abstract onEnter(element: GameElement): void;
+	public onEnter(element: GameElement): boolean { return false; }
 
-	public abstract onLeave(element: GameElement): void;
+	public onLeave(element: GameElement): boolean { return false; }
+
+	public abstract get data(): AnyCellData;
 }

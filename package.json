@@ -1,18 +1,20 @@
 {
-	"name": "{project-name}",
+	"name": "woc-bot-jam",
 	"version": "1.0.0",
-	"description": "{project-description}",
+	"description": "World of Coding bot jam bot",
 	"main": "build/index.js",
-	"author": "{author}",
+	"author": "Luyx",
 	"license": "MIT",
 	"type": "module",
 	"imports": {
-		"#typings": "./build/typings/index.js"
+		"#typings": "./build/typings/index.js",
+		"#game": "./build/core/game/index.js",
+		"#responses": "./build/core/responses/index.js"
 	},
 	"bugs": {
-		"url": "https://github.com/LuyxDevelopment/{project-name}/issues"
+		"url": "https://github.com/LuyxDevelopment/woc-bot-jam/issues"
 	},
-	"homepage": "https://github.com/LuyxDevelopment/{project-name}#readme",
+	"homepage": "https://github.com/LuyxDevelopment/woc-bot-jam#readme",
 	"devDependencies": {
 		"@types/node": "^18.0.3",
 		"@typescript-eslint/eslint-plugin": "^5.30.5",
@@ -20,11 +22,22 @@
 		"eslint": "^8.19.0",
 		"typescript": "^4.7.4"
 	},
-	"dependencies": {},
+	"dependencies": {
+		"@discordjs/builders": "^1.1.0",
+		"@discordjs/rest": "^1.0.1",
+		"better-random.js": "^2.0.4",
+		"chalk": "^5.0.1",
+		"daik": "github:LuyxDevelopment/Daik",
+		"discord.js": "^13.8.1",
+		"dotenv": "^16.0.1",
+		"mongoose": "^6.5.1"
+	},
 	"scripts": {
 		"build": "tsc",
 		"lint": "eslint --cache --fix",
 		"check": "npm run lint && tsc --noEmit",
-		"start": "npm run lint && npm run build && node build/index.js"
+		"start": "npm run lint && npm run build && node build/index.js",
+		"post-global": ".\\scripts\\confirm.bat && node scripts/post_global.js",
+		"post-local-test": "node scripts/post_local_test.js"
 	}
 }

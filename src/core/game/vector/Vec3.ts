@@ -1,4 +1,4 @@
-import { Vec2 } from './Vector2.js';
+import { Vec2 } from './Vec2.js';
 
 export interface Vec3Data {
 	x: number;

@@ -1,4 +1,4 @@
-import { Vec3 } from './Vector3.js';
+import { Vec3 } from './Vec3.js';
 
 export interface Vec2Data {
 	x: number;
@@ -46,7 +46,7 @@ export class Vec2 {
 		return {
 			x: this.x,
 			y: this.y,
-		}
+		};
 	}
 
 	public clone(): Vec2 {

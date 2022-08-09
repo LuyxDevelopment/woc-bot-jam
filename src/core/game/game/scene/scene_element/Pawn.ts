@@ -1,4 +1,4 @@
-import { Vec2 } from '../../../vector/Vector2.js';
+import { Vec2 } from '../../../vector/Vec2.js';
 import { GameElement } from './GameElement.js';
 
 export abstract class Pawn extends GameElement {
@@ -10,12 +10,15 @@ export abstract class Pawn extends GameElement {
 			const oldCell = grid.get(this.pos);
 			const newCell = grid.get(pos);
 			const heightDif = Math.abs(oldCell.getHeight() - newCell.getHeight());
+			let shouldStop = false;
 
 			if (heightDif <= 1.1) {
-				oldCell.onLeave(this);
+				shouldStop = oldCell.onLeave(this) || shouldStop;
 				this.pos = pos;
-				newCell.onEnter(this);
+				shouldStop = newCell.onEnter(this) || shouldStop;
 			}
+
+			if (shouldStop) break;
 
 			n--;
 		}

@@ -1,10 +1,9 @@
-import { Game } from '../../game/Game.js';
-import { Scene } from '../../game/scene/Scene.js';
-import { BaseCell } from '../BaseCell.js';
-import { Cell, CellData } from './Cell.js';
-import { TeleporterCell, TeleporterCellData } from './TeleporterCell.js';
-
-export type AnyCellData = CellData | TeleporterCellData;
+import { Game } from '../game/Game.js';
+import { Scene } from '../game/scene/Scene.js';
+import { AnyCellData } from '../typings/cell.js';
+import { BaseCell } from './BaseCell.js';
+import { Cell } from './cells/Cell.js';
+import { TeleporterCell } from './cells/TeleporterCell.js';
 
 export class CellFactory {
 	private readonly game: Game;
