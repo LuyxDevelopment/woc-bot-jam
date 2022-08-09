@@ -24,7 +24,7 @@ export class Tree extends Anchor {
 			amount: r,
 		});
 
-		responder.send(interaction, 'COLLECTED', 'stone', r);
+		responder.send(interaction, 'COLLECTED', 'wood', r);
 
 		this.close();
 	}
