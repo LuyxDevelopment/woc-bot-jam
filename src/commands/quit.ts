@@ -2,24 +2,33 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { DaikSlashCommand } from 'daik';
 import { responder } from '#responses';
 import { CommandProps, CommandResult, CommandRunArgs } from '#typings';
-import { User } from '../core/database/index.js';
+import { game } from '../game/game.js';
 
 export default new DaikSlashCommand<CommandRunArgs, CommandResult, CommandProps>({
-	name: 'inventory',
+	name: 'quit',
 	props: {
-		ephemeral: false,
+		ephemeral: true,
 	},
 	data: new SlashCommandBuilder()
-		.setName('inventory')
-		.setDescription('Shows your inventory')
+		.setName('quit')
+		.setDescription('Quit the game')
 		.toJSON(),
 	async run(interaction, client): Promise<CommandResult> {
-		const user = await User.findOrInsert(interaction.user.id);
+		const player = game.getElement(interaction.user.id);
 
-		await responder.send(interaction, 'INVENTORY', user.inventory);
+		if (!player) {
+			await responder.send(interaction, 'NOT_PLAYING');
+
+			return {
+				success: false,
+			};
+		}
+
+		player.close();
+		await responder.send(interaction, 'QUIT');
 
 		return {
 			success: true,
 		};
-	},	
+	},
 });

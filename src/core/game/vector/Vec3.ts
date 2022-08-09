@@ -33,6 +33,10 @@ export class Vec3 {
 		return new Vec3(this.x * other.x, this.y * other.y, this.z * other.z);
 	}
 
+	public difference(other: Vec3): Vec3 {
+		return new Vec3(Math.abs(this.x - other.x), Math.abs(this.y - other.y), Math.abs(this.z - other.z));
+	}
+
 	public divide(other: Vec3): Vec3 {
 		return new Vec3(this.x / other.x, this.y / other.y, this.z / other.z);
 	}

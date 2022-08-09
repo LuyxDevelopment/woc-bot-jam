@@ -2,10 +2,12 @@ import { TextureMap } from '../renderer/TextureMap.js';
 import { Scene } from './scene/Scene.js';
 import { CellMaterial } from '../typings/cell.js';
 import { GameElement } from './scene/scene_element/GameElement.js';
+import { RandomEngine } from 'better-random.js';
 
 type ExtractGameElementLastArgs<GE extends typeof GameElement> = GE extends { new(game: Game, scene: Scene, ...args: infer T): GE['prototype'] } ? T : never;
 
 export class Game {
+	public readonly rng: RandomEngine = new RandomEngine();
 	private readonly scenes: Map<string, Scene>;
 	private readonly elements: Map<string, GameElement>;
 	private readonly textures: TextureMap;

@@ -1,4 +1,4 @@
-import { Game, CellMaterial, Player, Vec2 } from '#game';
+import { Game, CellMaterial, Player, Vec2, RenderManager } from '#game';
 import mainScene from './scenes/Main.js';
 import caveScene from './scenes/Cave.js';
 import woodsScene from './scenes/Woods.js';
@@ -20,7 +20,11 @@ export const game = new Game({
 	[CellMaterial.SmallStone]: '◼️',
 	[CellMaterial.TinyStone]: '◾',
 	[CellMaterial.MiniStone]: '▪️',
-
+	[CellMaterial.House1]: '🏠',
+	[CellMaterial.House2]: '🏡',
+	[CellMaterial.House3]: '🛖',
+	[CellMaterial.House4]: '⛺',
+	[CellMaterial.House5]: '🕌',
 });
 
 mainScene(game);
@@ -30,62 +34,72 @@ darkWoodsScene(game);
 deepCaveScene(game);
 cityCentreScene(game);
 
-export const renders: [Record<string, string>] = [game.renderAll()];
+export const renderManager = new RenderManager(game);
 
-setInterval(() => {
-	renders[0] = game.renderAll();
+renderManager.setLoopTime(2500);
+renderManager.startRenderLoop();
 
-	for (const key in renders[0]) {
+renderManager.on('render', (renders) => {
+	for (const key in renders) {
 		console.log(key);
-		console.log(renders[0][key]);
+		console.log(renders[key]);
 		console.log();
 	}
-}, 2500);
+});
 
 
-import { AnyCellData } from '#game';
-import { readFileSync } from 'node:fs';
 
-// { height: 0, type: 'teleporter', material: 4, targetPos: { x: , y: }, targetScene: }
-{
-	// const map = readFileSync('./src/game/tmp2.txt', 'utf8');
 
-	// const lines = map.split('\n').map(line => line.trim());
-	// const height = lines.length;
-	// const width = lines[0]!.length;
-	// const chars = lines.flatMap(line => line.split(' '));
 
-	// const scene = game.addScene('Temp', width, height);
 
-	// scene.getGrid().init({
-	// 	height: 0,
-	// 	type: 'cell',
-	// 	material: CellMaterial.Grass,
-	// });
+// import { AnyCellData } from '#game';
+// import { readFileSync } from 'node:fs';
 
-	// const cells: AnyCellData[] = [];
+// // { height: 0, type: 'teleporter', material: 4, targetPos: { x: , y: }, targetScene: }
+// {
+// 	const map = readFileSync('./src/game/tmp2.txt', 'utf8');
 
-	// for (const char of chars) {
-	// 	cells.push({
-	// 		height: 0,
-	// 		type: 'cell',
-	// 		material: {
-	// 			'🌌': CellMaterial.Teleporter,
-	// 			'🟩': CellMaterial.Grass,
-	// 			'🟫': CellMaterial.Dirt,
-	// 			'🔳': CellMaterial.Pebbles,
-	// 			'🟦': CellMaterial.Water,
-	// 			'🟨': CellMaterial.Sandstone,
-	// 			'🟧': CellMaterial.MesaDirt,
-	// 			'⬛': CellMaterial.Stone,
-	// 			'🔸': CellMaterial.Pyrite,
-	// 			'🔹': CellMaterial.Lapis,
-	// 			'◼️': CellMaterial.SmallStone,
-	// 			'◾': CellMaterial.TinyStone,
-	// 			'▪️': CellMaterial.MiniStone,
-	// 		}[char]!,
-	// 	});	
-	// }
+// 	const lines = map.split('\n').map(line => line.trim());
+// 	const height = lines.length;
+// 	const width = lines[0]!.length;
+// 	const chars = lines.flatMap(line => line.split(' '));
 
-	// console.log(cells);
-}
+// 	const scene = game.addScene('Temp', width, height);
+
+// 	scene.getGrid().init({
+// 		height: 0,
+// 		type: 'cell',
+// 		material: CellMaterial.Grass,
+// 	});
+
+// 	const cells: AnyCellData[] = [];
+
+// 	for (const char of chars) {
+// 		cells.push({
+// 			height: 0,
+// 			type: 'cell',
+// 			material: {
+// 				'🌌': CellMaterial.Teleporter,
+// 				'🟩': CellMaterial.Grass,
+// 				'🟫': CellMaterial.Dirt,
+// 				'🔳': CellMaterial.Pebbles,
+// 				'🟦': CellMaterial.Water,
+// 				'🟨': CellMaterial.Sandstone,
+// 				'🟧': CellMaterial.MesaDirt,
+// 				'⬛': CellMaterial.Stone,
+// 				'🔸': CellMaterial.Pyrite,
+// 				'🔹': CellMaterial.Lapis,
+// 				'◼️': CellMaterial.SmallStone,
+// 				'◾': CellMaterial.TinyStone,
+// 				'▪️': CellMaterial.MiniStone,
+// 				'🏠': CellMaterial.House1,
+// 				'🏡': CellMaterial.House2,
+// 				'🛖': CellMaterial.House3,
+// 				'⛺': CellMaterial.House4,
+// 				'🕌': CellMaterial.House5,
+// 			}[char]!,
+// 		});	
+// 	}
+
+// 	console.log(cells);
+// }

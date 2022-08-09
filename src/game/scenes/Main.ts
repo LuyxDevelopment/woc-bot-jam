@@ -1,6 +1,6 @@
 import { Game, Vec2 } from '#game';
 
-export default (game: Game) => {
+export default (game: Game): void => {
 	const scene = game.addScene('Main', 10, 6);
 
 	scene.setStartPos(new Vec2(1, 2));
@@ -34,7 +34,7 @@ export default (game: Game) => {
 		{ height: 0, type: 'cell', material: 1 },        
 		{ height: 0, type: 'cell', material: 2 },        
 		{ height: 0, type: 'cell', material: 1 },        
-		{ height: 0, type: 'teleporter', material: 4, targetPos: { x: 0, y: 0 }, targetScene: 'City Centre' },        
+		{ height: 0, type: 'teleporter', material: 4, targetPos: { x: 0, y: 3 }, targetScene: 'City Centre' },        
 		{ height: 0, type: 'cell', material: 2 },        
 		{ height: 0, type: 'cell', material: 1 },        
 		{ height: 0, type: 'cell', material: 1 },        
@@ -44,22 +44,22 @@ export default (game: Game) => {
 		{ height: 0, type: 'cell', material: 2 },        
 		{ height: 0, type: 'cell', material: 1 },        
 		{ height: 0, type: 'cell', material: 2 },        
-		{ height: 0, type: 'teleporter', material: 4, targetPos: { x: 0, y: 0 }, targetScene: 'City Centre' },        
-		{ height: 0, type: 'cell', material: 3 },        
-		{ height: 0, type: 'cell', material: 3 },        
-		{ height: 0, type: 'cell', material: 3 },        
-		{ height: 0, type: 'cell', material: 3 },        
-		{ height: 0, type: 'cell', material: 3 },        
+		{ height: 0, type: 'teleporter', material: 4, targetPos: { x: 0, y: 4 }, targetScene: 'City Centre' },        
+		{ height: Infinity, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
 		{ height: 0, type: 'cell', material: 1 },        
 		{ height: 0, type: 'cell', material: 1 },        
 		{ height: 0, type: 'cell', material: 0 },        
 		{ height: 0, type: 'cell', material: 0 },        
 		{ height: 0, type: 'cell', material: 0 },        
-		{ height: 0, type: 'cell', material: 3 },        
-		{ height: 0, type: 'cell', material: 3 },        
-		{ height: 0, type: 'cell', material: 3 },        
-		{ height: 0, type: 'cell', material: 3 },        
-		{ height: 0, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
+		{ height: Infinity, type: 'cell', material: 3 },        
 		{ height: 0, type: 'teleporter', material: 4, targetPos: { x: 3, y: 0  }, targetScene: 'Cave' },        
 		{ height: 0, type: 'teleporter', material: 4, targetPos: { x: 3, y: 0 }, targetScene: 'Cave' },        
 		{ height: 0, type: 'cell', material: 0 },        

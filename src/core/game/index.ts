@@ -10,11 +10,13 @@ export * from './game/scene/scene_element/GameElement.js';
 export * from './game/scene/scene_element/NPC.js';
 export * from './game/scene/scene_element/Pawn.js';
 export * from './game/scene/scene_element/Player.js';
+export * from './game/scene/scene_element/decorators/interaction.js';
 
 export * from './grid/Grid.js';
 
 export * from './renderer/Renderable.js';
 export * from './renderer/Renderer.js';
+export * from './renderer/RenderManager.js';
 export * from './renderer/TextureMap.js';
 
 export * from './typings/cell.js';

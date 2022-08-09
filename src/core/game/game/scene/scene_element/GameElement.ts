@@ -8,6 +8,8 @@ import { Pawn } from './Pawn.js';
 import { NPC } from './NPC.js';
 import { Player } from './Player.js';
 import { Anchor } from './Anchor.js';
+import { Awaitable } from 'discord.js';
+import { GameElementInteraction } from './decorators/interaction.js';
 
 export abstract class GameElement implements Renderable {
 	public readonly id: string;
@@ -15,6 +17,8 @@ export abstract class GameElement implements Renderable {
 	protected pos: Vec2;
 	protected readonly game: Game;
 	protected scene: Scene;
+	private existsInGame = true;
+	public static readonly interactions: ((elem: GameElement) => GameElementInteraction)[] = [];
 
 	constructor(game: Game, scene: Scene, id: string, texture: string) {
 		this.id = id;
@@ -22,6 +26,22 @@ export abstract class GameElement implements Renderable {
 		this.pos = Vec2.zero();
 		this.game = game;
 		this.scene = scene;
+	}
+
+	public abstract getInteractions(): readonly GameElementInteraction[];
+
+	public getCloseInteractions(): readonly GameElementInteraction[] {
+		const interactions: GameElementInteraction[] = [];
+		
+		for (const element of this.scene.getElements()) {
+			const dif = element.getPos().difference(this.getPos());
+
+			if (dif.x <= 1 && dif.y <= 1) {
+				interactions.push(...element.getInteractions());
+			}
+		}
+
+		return interactions;
 	}
 
 	public getTexture(): string {
@@ -61,6 +81,11 @@ export abstract class GameElement implements Renderable {
 	public close(): void {
 		this.game.removeElement(this);
 		this.scene.removeElement(this);
+		this.existsInGame = false;
+	}
+
+	public exists(): boolean {
+		return this.existsInGame;
 	}
 
 	public isAnchor(): this is Anchor { return false; }

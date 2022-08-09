@@ -9,7 +9,8 @@
 	"imports": {
 		"#typings": "./build/typings/index.js",
 		"#game": "./build/core/game/index.js",
-		"#responses": "./build/core/responses/index.js"
+		"#responses": "./build/core/responses/index.js",
+		"#database": "./build/core/database/index.js"
 	},
 	"bugs": {
 		"url": "https://github.com/LuyxDevelopment/woc-bot-jam/issues"
@@ -30,7 +31,8 @@
 		"daik": "github:LuyxDevelopment/Daik",
 		"discord.js": "^13.8.1",
 		"dotenv": "^16.0.1",
-		"mongoose": "^6.5.1"
+		"mongoose": "^6.5.1",
+		"tiny-typed-emitter": "^2.1.0"
 	},
 	"scripts": {
 		"build": "tsc",

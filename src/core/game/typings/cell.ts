@@ -15,6 +15,11 @@ export enum CellMaterial {
 	SmallStone,
 	TinyStone,
 	MiniStone,
+	House1,
+	House2,
+	House3,
+	House4,
+	House5,
 }
 
 export type AnyCellData = CellData | TeleporterCellData;

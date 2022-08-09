@@ -1,6 +1,6 @@
 import { Game, Vec2 } from '#game';
 
-export default (game: Game) => {
+export default (game: Game): void => {
 	const scene = game.addScene('Dark Woods', 11, 6);
 
 	scene.setStartPos(new Vec2(4, 3));
